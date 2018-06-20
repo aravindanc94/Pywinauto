@@ -1,0 +1,73 @@
+from pywinauto.application import Application
+import time
+from threading import Timer
+app = Application(backend="uia").start(
+    "C:\\Program Files (x86)\\Broadgate Infonet\\Broadgate rPOS\\rPOS.exe")
+
+def login():
+    try:
+        app.login['OpenButton'].click_input()
+        app.login['Admin rPOS'].click_input()
+        app.login['Edit'].type_keys("1234")
+        app.Login['Pane7'].click_input()
+    except Exception as E:
+        print(E)
+    finally:
+        table()
+
+def table():
+    try:
+        app.Dialog['Pane13'].click_input()
+        app.Dialog['Row 01'].click_input()
+        app.Dialog['No. Of. Guest'].type_keys("1")
+        app.Dialog['OpenButton'].click_input()
+        app.Dialog['ramesh g'].click_input()
+        app.Dialog['ProceedButton'].click_input()
+    except Exception as E:
+        print(E)
+    finally:
+        drinks()
+
+def drinks():
+    try:
+        # Beverages
+        app.Dialog['Static10'].click_input()
+        app.Dialog['Static9'].click_input()
+        app.Dialog['Static7'].click_input()
+        # time.sleep(2)
+        # app.Dialog['DataItem4'].click_input()
+        # app.Dialog.ok.click_input()
+        app.Dialog.print_control_identifiers()        
+    except Exception as E:
+        print(E)
+    finally:
+        food()
+
+def food():
+    try:
+        # Food
+        app.Dialog['Static18'].click_input()
+        app.Dialog['Static11'].click_input()
+        app.Dialog['Static9'].click_input()
+        # time.sleep(2)
+        # app.Dialog['DataItem4'].click_input()
+        # app.Dialog.ok.click_input()
+    except Exception as E:
+        print(E)        
+    finally:
+        ordercancel()
+
+def ordercancel():
+    try:
+        # Cancelling order
+        app.Dialog['Button10'].click_input()
+        app.Dialog.yes.click_input()
+        app.Dialog.ok.click_input()  
+        time.sleep(5)   
+        app.Dialog['Pane16'].click_input()
+        app.Dialog.yes.click_input()
+    except Exception as E:
+        print(E)
+
+
+login()
