@@ -1,0 +1,60 @@
+from pywinauto.application import Application
+import time
+from threading import Timer
+app = Application(backend="uia").start("C:\\Program Files (x86)\\Broadgate Infonet\\Broadgate rPOS\\rPOS.exe")
+
+# ['Login', 'LoginDialog', 'Dialog']
+#Login
+def login():
+    try:
+        app.Login.child_window(auto_id="cmbUserName", 
+        control_type="ComboBox").child_window(title="Open", control_type="Button").click()
+        app.login.child_window(title="Admin rPOS", control_type="ListItem").click_input()
+        app.Login.child_window(title="Admin rPOS", auto_id="txtPIN", control_type="Edit").type_keys("1234")
+        app.Login.child_window(auto_id="picLogin", control_type="Pane").click_input()
+        app.Dialog.child_window(auto_id="picTableBooking", control_type="Pane").click_input()
+    except:
+        print("password Incorrect")
+    finally:
+        tableselection()
+
+def tableselection():
+    try:
+        app.Dialog.child_window(title="Row 0", control_type="Custom").click_input()
+        app.Dialog["Static35"].type_keys("1")
+        app.Dialog.child_window(title="Open", control_type="Button").click_input()
+        app.Dialog.child_window(title="ramesh g", control_type="ListItem").select()
+        app.Dialog.child_window(title="Proceed", auto_id="btnProceed", control_type="Button").click_input()
+        app.Dialog['Button3'].click_input()
+    except:
+        print("Error Selecting Table")
+    finally:
+        beverages()
+        
+def beverages():
+    try:
+        app.Dialog['Static10'].click_input()
+        app.Dialog['Static9'].click_input()
+        app.Dialog['Static7'].click_input()
+        # time.sleep(2)
+        # app.Dialog['DataItem4'].click_input()
+        # app.Dialog.ok.click_input()
+    except:
+        print("Error Selecting Beverages")
+    finally:
+        mains()
+
+def mains():
+    try:
+        app.Dialog.child_window(title="1", auto_id="btn_2", control_type="Text").click_input()
+        app.Dialog.child_window(title="2", auto_id="btn_5", control_type="Text").click_input()
+        app.Dialog.child_window(title="3", auto_id="btn_14", control_type="Text").click_input()
+        app.Dialog.print_control_identifiers()
+        # time.sleep(2)
+        # app.Dialog['DataItem4'].click_input()
+        # app.Dialog.ok.click_input()
+        
+    except:
+        print("Error Selecting Mains")
+
+login()
