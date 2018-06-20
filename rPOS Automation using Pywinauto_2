@@ -18,7 +18,7 @@ def login():
 def table():
     try:
         app.Dialog['Pane13'].click_input()
-        app.Dialog['Row 01'].click_input()
+        app.Dialog['Row 04'].click_input()
         app.Dialog['No. Of. Guest'].type_keys("1")
         app.Dialog['OpenButton'].click_input()
         app.Dialog['ramesh g'].click_input()
@@ -37,7 +37,7 @@ def drinks():
         # time.sleep(2)
         # app.Dialog['DataItem4'].click_input()
         # app.Dialog.ok.click_input()
-        app.Dialog.print_control_identifiers()        
+        # app.Dialog.print_control_identifiers()        
     except Exception as E:
         print(E)
     finally:
@@ -46,9 +46,10 @@ def drinks():
 def food():
     try:
         # Food
-        app.Dialog['Static18'].click_input()
-        app.Dialog['Static11'].click_input()
-        app.Dialog['Static9'].click_input()
+        app.Dialog['Static14'].click_input()                  
+        app.Dialog['Static9'].click_input()                 
+        app.Dialog['Static7'].click_input()
+        # app.Dialog.print_control_identifiers() 
         # time.sleep(2)
         # app.Dialog['DataItem4'].click_input()
         # app.Dialog.ok.click_input()
@@ -65,6 +66,7 @@ def ordercancel():
         app.Dialog.ok.click_input()  
         time.sleep(5)   
         app.Dialog['Pane16'].click_input()
+        time.sleep(3)
         app.Dialog.yes.click_input()
     except Exception as E:
         print(E)
